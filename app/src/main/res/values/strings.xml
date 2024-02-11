@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MovieAPI</string>
+    <string name="get_popular_films">GET Popular films</string>
+    <string name="poster">poster</string>
+    <string name="error">Network error</string>
+    <string name="try_again">Try Again</string>
+</resources>
