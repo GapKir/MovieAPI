@@ -1,35 +1,25 @@
-package com.example.movieapi.adapter
+package com.dev.popular_films.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.dev.popular_films.databinding.MovieItemBinding
+import com.dev.popular_films.presentation.adapter.MovieDiffCallback
 import com.example.movieapi.R
-import com.example.movieapi.databinding.MovieItemBinding
 import com.example.movieapi.model.Movie
 
-class MovieAdapter: RecyclerView.Adapter<MovieAdapter.MovieViewHolder> (){
-
-    var movies: List<Movie> = emptyList()
-        set(newValue) {
-            val diffCallback = MovieDiffCallback(field, newValue)
-            val diffResult = DiffUtil.calculateDiff(diffCallback)
-            field = newValue
-            diffResult.dispatchUpdatesTo(this)
-        }
+class MovieAdapter
+    : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = MovieItemBinding.inflate(inflater, parent, false)
         return MovieViewHolder(binding)
     }
-
-    override fun getItemCount(): Int = movies.size
-
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val movie = getItem(position)
         holder.bind(movie)
     }
 

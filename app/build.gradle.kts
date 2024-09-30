@@ -41,7 +41,6 @@ android {
 
 dependencies {
     val lifecycle = "2.7.0"
-    val glide = "4.16.0"
     val retrofit = "2.9.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -51,9 +50,6 @@ dependencies {
 
     //lifecycle-aware component
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
-
-    //glide
-    implementation("com.github.bumptech.glide:glide:$glide")
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit")

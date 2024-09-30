@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieapi.adapter.MovieAdapter
+import com.dev.popular_films.presentation.adapter.MovieAdapter
 import com.example.movieapi.databinding.ActivityMainBinding
 import com.example.movieapi.network.RetrofitClient
 import com.example.movieapi.network.response.dto.PopularResponse
@@ -20,26 +20,15 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: MovieAdapter
+    private lateinit var adapter: com.dev.popular_films.presentation.adapter.MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initAdapter()
-
         binding.btnGetPopularFilms.setOnClickListener {
             getPopularFilms()
-        }
-    }
-
-    private fun initAdapter() {
-        adapter = MovieAdapter()
-        val layoutManager = LinearLayoutManager(this)
-        binding.apply {
-            recycler.layoutManager = layoutManager
-            recycler.adapter = adapter
         }
     }
 

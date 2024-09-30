@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "MovieAPI"
 include(":app")
+include(":popular_films")
+include(":popular_films_connector")
