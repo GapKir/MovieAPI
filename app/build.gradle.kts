@@ -40,19 +40,21 @@ android {
 }
 
 dependencies {
-    val lifecycle = "2.7.0"
-    val retrofit = "2.9.0"
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //lifecycle-aware component
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
 
-    //retrofit
-    implementation("com.squareup.retrofit2:retrofit:$retrofit")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(project(":shared_api"))
+    implementation(project(":shared_repo"))
+    implementation(project(":popular_films_connector"))
+    implementation(project(":popular_films"))
+    implementation(project(":shared_models"))
+    implementation(project(":common"))
 }

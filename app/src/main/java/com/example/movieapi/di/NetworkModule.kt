@@ -1,16 +1,13 @@
-package com.example.movieapi.network
+package com.example.movieapi.di
 
-import com.example.movieapi.network.response.MovieAPI
+import com.dev.shared_api.popular_films.PopularFilmsApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
-    private const val ACCEPT_HEADER = "application/json"
-    private const val AUTHORIZATION_HEADER = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWI4NjYxOTRmZTRiODJhMjJhNWYxMDZmM2I3Y2M4NyIsInN1YiI6IjY1YzgwYzQ2OTQ1MWU3MDE4NDdiNjU5ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rTI54H7jLKyALGpbgpwVvkTFVkHWUyEBsLMPy4O_pt0"
+class NetworkModule {
 
     private val headerInterceptor = Interceptor{chain->
         val request = chain.request().newBuilder()
@@ -37,5 +34,12 @@ object RetrofitClient {
             .build()
     }
 
-    val movieApi: MovieAPI = retrofit.create(MovieAPI::class.java)
+    fun getPopularFilmsApi(): PopularFilmsApi {
+        return retrofit.create(PopularFilmsApi::class.java)
+    }
+    companion object{
+        private const val BASE_URL = "https://api.themoviedb.org/3/"
+        private const val ACCEPT_HEADER = "application/json"
+        private const val AUTHORIZATION_HEADER = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWI4NjYxOTRmZTRiODJhMjJhNWYxMDZmM2I3Y2M4NyIsInN1YiI6IjY1YzgwYzQ2OTQ1MWU3MDE4NDdiNjU5ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rTI54H7jLKyALGpbgpwVvkTFVkHWUyEBsLMPy4O_pt0"
+    }
 }

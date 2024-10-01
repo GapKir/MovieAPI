@@ -1,3 +1,4 @@
 <resources>
     <string name="get_popular_films">GET Popular films</string>
+    <string name="app_name">MovieAPI</string>
 </resources>

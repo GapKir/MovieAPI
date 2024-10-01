@@ -1,7 +1,6 @@
-package com.example.movieapi.model
+package com.dev.shared_models.popular_films
 
-
-data class Movie(
+data class PopularFilmsVO(
     val overview: String,
     val poster: String,
     val title: String

@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.dev.popular_films.databinding.MovieItemBinding
 import com.dev.popular_films.presentation.adapter.MovieDiffCallback
-import com.example.movieapi.R
-import com.example.movieapi.model.Movie
+import com.dev.shared_models.popular_films.PopularFilmsVO
+import com.dev.popular_films.R
 
 class MovieAdapter
-    : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()){
+    : ListAdapter<PopularFilmsVO, MovieAdapter.MovieViewHolder>(MovieDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,7 +27,7 @@ class MovieAdapter
         private val binding: MovieItemBinding
     ): ViewHolder(binding.root){
 
-        fun bind(item: Movie){
+        fun bind(item: PopularFilmsVO){
             binding.tvTitle.text = item.title
             binding.tvDesc.text = item.overview
 

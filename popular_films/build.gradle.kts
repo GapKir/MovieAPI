@@ -10,17 +10,19 @@ android {
     buildFeatures{
         viewBinding = true
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 dependencies {
-    implementation(project(":app"))
+    implementation(project(":common"))
     implementation(project(":popular_films_connector"))
+    implementation(project(":shared_models"))
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.fragment:fragment-ktx:1.8.3")
 
-    //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
 

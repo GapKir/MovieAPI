@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dev.popular_films_connector"
+    namespace = "com.dev.shared_repo"
     compileSdk = 34
 
     kotlinOptions {
@@ -13,5 +13,6 @@ android {
 }
 dependencies {
     implementation(project(":shared_models"))
-    implementation(project(":shared_repo"))
+    implementation(project(":shared_api"))
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 }

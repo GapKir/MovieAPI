@@ -1,15 +1,15 @@
 package com.dev.popular_films.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.movieapi.model.Movie
+import com.dev.shared_models.popular_films.PopularFilmsVO
 
-class MovieDiffCallback: DiffUtil.ItemCallback<Movie>() {
+class MovieDiffCallback: DiffUtil.ItemCallback<PopularFilmsVO>() {
 
-    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    override fun areItemsTheSame(oldItem: PopularFilmsVO, newItem: PopularFilmsVO): Boolean {
         return oldItem.title == newItem.title
     }
 
-    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    override fun areContentsTheSame(oldItem: PopularFilmsVO, newItem: PopularFilmsVO): Boolean {
         return oldItem == newItem
     }
 }

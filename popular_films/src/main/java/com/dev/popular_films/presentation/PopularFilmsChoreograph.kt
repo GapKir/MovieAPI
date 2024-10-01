@@ -1,17 +1,10 @@
 package com.dev.popular_films.presentation
 
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getString
 import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.dev.popular_films.R.string
 import com.dev.popular_films.databinding.FragmentPopularFilmsBinding
-import com.example.movieapi.model.Movie
-import kotlinx.coroutines.launch
+import com.dev.shared_models.popular_films.PopularFilmsVO
 
 class PopularFilmsChoreograph(
     private val binding: FragmentPopularFilmsBinding,
@@ -31,7 +24,7 @@ class PopularFilmsChoreograph(
         }
     }
 
-    private fun handleSuccessState(data: List<Movie>) {
+    private fun handleSuccessState(data: List<PopularFilmsVO>) {
         binding.progressBar.isVisible = false
         adapter.submitList(data)
     }
@@ -39,7 +32,7 @@ class PopularFilmsChoreograph(
     private fun handleErrorState() {
         binding.progressBar.isVisible = false
         val ctx = binding.root.context
-        Toast.makeText(ctx, getString(ctx, string.error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(ctx,ctx.getString(string.error), Toast.LENGTH_SHORT).show()
     }
 
     private fun handleLoadingState() {

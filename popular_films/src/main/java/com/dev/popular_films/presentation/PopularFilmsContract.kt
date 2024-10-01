@@ -1,6 +1,6 @@
 package com.dev.popular_films.presentation
 
-import com.example.movieapi.model.Movie
+import com.dev.shared_models.popular_films.PopularFilmsVO
 
 object PopularFilmsContract {
 
@@ -11,6 +11,6 @@ object PopularFilmsContract {
 
         data object Loading : ScreenState
         data object Error : ScreenState
-        data class Success(val data: List<Movie>) : ScreenState
+        data class Success(val data: List<PopularFilmsVO>) : ScreenState
     }
 }

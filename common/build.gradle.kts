@@ -4,14 +4,17 @@ plugins {
 }
 
 android {
-    namespace = "com.dev.popular_films_connector"
+    namespace = "com.dev.common"
     compileSdk = 34
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
+
 dependencies {
-    implementation(project(":shared_models"))
-    implementation(project(":shared_repo"))
+    implementation("androidx.fragment:fragment-ktx:1.8.3")
 }
