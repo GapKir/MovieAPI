@@ -1,4 +1,4 @@
-package com.dev.popular_films.presentation.adapter
+package com.dev.feature_popular_films.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.dev.shared_models.popular_films.PopularFilmsVO

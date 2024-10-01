@@ -1,14 +1,14 @@
-package com.dev.popular_films.presentation
+package com.dev.feature_popular_films.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.dev.popular_films.databinding.MovieItemBinding
-import com.dev.popular_films.presentation.adapter.MovieDiffCallback
-import com.dev.shared_models.popular_films.PopularFilmsVO
+import com.dev.feature_popular_films.presentation.adapter.MovieDiffCallback
 import com.dev.popular_films.R
+import com.dev.popular_films.databinding.MovieItemBinding
+import com.dev.shared_models.popular_films.PopularFilmsVO
 
 class MovieAdapter
     : ListAdapter<PopularFilmsVO, MovieAdapter.MovieViewHolder>(MovieDiffCallback()){

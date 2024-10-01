@@ -1,8 +1,8 @@
-package com.dev.popular_films.presentation
+package com.dev.feature_popular_films.presentation
 
 import android.widget.Toast
 import androidx.core.view.isVisible
-import com.dev.popular_films.R.string
+import com.dev.popular_films.R
 import com.dev.popular_films.databinding.FragmentPopularFilmsBinding
 import com.dev.shared_models.popular_films.PopularFilmsVO
 
@@ -32,7 +32,7 @@ class PopularFilmsChoreograph(
     private fun handleErrorState() {
         binding.progressBar.isVisible = false
         val ctx = binding.root.context
-        Toast.makeText(ctx,ctx.getString(string.error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(ctx,ctx.getString(R.string.error), Toast.LENGTH_SHORT).show()
     }
 
     private fun handleLoadingState() {

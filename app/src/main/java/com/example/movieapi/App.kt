@@ -2,8 +2,8 @@ package com.example.movieapi
 
 import android.app.Application
 import com.airbnb.mvrx.Mavericks
-import com.dev.popular_films.di.PopularFilmsComponentProvider
-import com.dev.popular_films.di.PopularFilmsDependencies
+import com.dev.feature_popular_films.di.PopularFilmsComponentProvider
+import com.dev.feature_popular_films.di.PopularFilmsDependencies
 import com.example.movieapi.di.FeatureComponent
 
 class App: Application(), PopularFilmsComponentProvider {

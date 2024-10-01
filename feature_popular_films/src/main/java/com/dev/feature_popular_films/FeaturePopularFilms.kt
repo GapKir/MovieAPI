@@ -1,8 +1,8 @@
-package com.dev.popular_films
+package com.dev.feature_popular_films
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
-import com.dev.popular_films.presentation.PopularFilmsScreen
+import com.dev.feature_popular_films.presentation.PopularFilmsScreen
 import com.dev.common.navigation.NavigationContract
 
 object FeaturePopularFilms:

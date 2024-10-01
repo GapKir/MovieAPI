@@ -1,4 +1,4 @@
-package com.dev.popular_films.presentation
+package com.dev.feature_popular_films.presentation
 
 import com.dev.common.mvi.MviScreenEffect
 import com.dev.common.mvi.MviScreenEvent

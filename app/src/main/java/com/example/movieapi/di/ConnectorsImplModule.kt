@@ -1,6 +1,6 @@
 package com.example.movieapi.di
 
-import com.dev.popular_films_connector.PopularFilmsConnector
+import com.dev.feature_popular_films_connector.PopularFilmsConnector
 import com.dev.shared_models.popular_films.PopularFilmsVO
 import com.dev.shared_repo.popular_films.PopularFilmsRepository
 

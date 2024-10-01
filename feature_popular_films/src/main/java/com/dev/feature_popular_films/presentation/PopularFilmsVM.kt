@@ -1,11 +1,11 @@
-package com.dev.popular_films.presentation
+package com.dev.feature_popular_films.presentation
 
 import android.app.Application
 import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
 import com.dev.common.viewmodels.MviScreenVM
-import com.dev.popular_films.di.PopularFilmsComponentProvider
-import com.dev.popular_films_connector.PopularFilmsConnector
+import com.dev.feature_popular_films.di.PopularFilmsComponentProvider
+import com.dev.feature_popular_films_connector.PopularFilmsConnector
 import kotlinx.coroutines.launch
 
 class PopularFilmsVM(

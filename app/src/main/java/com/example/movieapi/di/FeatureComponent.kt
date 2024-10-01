@@ -1,7 +1,7 @@
 package com.example.movieapi.di
 
-import com.dev.popular_films.di.PopularFilmsDependencies
-import com.dev.popular_films_connector.PopularFilmsConnector
+import com.dev.feature_popular_films.di.PopularFilmsDependencies
+import com.dev.feature_popular_films_connector.PopularFilmsConnector
 
 class FeatureComponent: PopularFilmsDependencies{
 

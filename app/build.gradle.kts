@@ -55,8 +55,8 @@ dependencies {
     //modules
     implementation(project(":shared_api"))
     implementation(project(":shared_repo"))
-    implementation(project(":popular_films_connector"))
-    implementation(project(":popular_films"))
+    implementation(project(":feature_popular_films_connector"))
+    implementation(project(":feature_popular_films"))
     implementation(project(":shared_models"))
     implementation(project(":common"))
 }

@@ -16,7 +16,7 @@ android {
 }
 dependencies {
     implementation(project(":common"))
-    implementation(project(":popular_films_connector"))
+    implementation(project(":feature_popular_films_connector"))
     implementation(project(":shared_models"))
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

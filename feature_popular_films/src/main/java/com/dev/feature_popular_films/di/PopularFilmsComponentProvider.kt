@@ -1,4 +1,4 @@
-package com.dev.popular_films.di
+package com.dev.feature_popular_films.di
 
 interface PopularFilmsComponentProvider {
 
