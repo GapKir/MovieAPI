@@ -2,8 +2,8 @@ package com.example.movieapi
 
 import android.os.Bundle
 import android.view.View
-import com.dev.fragments.Screen
-import com.dev.fragments.viewBinding
+import com.dev.common.fragments.Screen
+import com.dev.common.fragments.viewBinding
 import com.dev.popular_films.FeaturePopularFilms
 import com.example.movieapi.databinding.FragmentMainBinding
 
@@ -21,4 +21,6 @@ class MainFragment: Screen() {
             )
         }
     }
+
+    override fun invalidate() = Unit
 }

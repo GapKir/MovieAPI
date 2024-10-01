@@ -16,11 +16,11 @@ class PopularFilmsChoreograph(
         initView()
     }
 
-    fun invalidateState(state: PopularFilmsContract.ScreenState) {
-        when (state) {
+    fun invalidateState(state: PopularFilmsContract.State) {
+        when (state.uiState) {
             is PopularFilmsContract.ScreenState.Loading -> handleLoadingState()
             is PopularFilmsContract.ScreenState.Error -> handleErrorState()
-            is PopularFilmsContract.ScreenState.Success -> handleSuccessState(state.data)
+            is PopularFilmsContract.ScreenState.Success -> handleSuccessState(state.uiState.data)
         }
     }
 

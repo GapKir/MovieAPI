@@ -40,17 +40,19 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    //standard
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    //lifecycle-aware component
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-
+    //retrofit
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //mvi
+    implementation("com.airbnb.android:mavericks:3.0.3")
+
+    //modules
     implementation(project(":shared_api"))
     implementation(project(":shared_repo"))
     implementation(project(":popular_films_connector"))

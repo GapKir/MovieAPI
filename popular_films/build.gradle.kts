@@ -24,6 +24,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("com.airbnb.android:mavericks:3.0.3")
 
 
 }

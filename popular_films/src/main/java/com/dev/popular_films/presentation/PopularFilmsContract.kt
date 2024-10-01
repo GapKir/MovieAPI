@@ -1,16 +1,22 @@
 package com.dev.popular_films.presentation
 
+import com.dev.common.mvi.MviScreenEffect
+import com.dev.common.mvi.MviScreenEvent
+import com.dev.common.mvi.MviScreenState
 import com.dev.shared_models.popular_films.PopularFilmsVO
 
 object PopularFilmsContract {
 
-    sealed interface Event
-    sealed interface Effect
+    sealed interface Event: MviScreenEvent
+    sealed interface Effect: MviScreenEffect
 
-    sealed interface ScreenState {
+    data class State(
+        val uiState: ScreenState
+    ): MviScreenState
 
-        data object Loading : ScreenState
-        data object Error : ScreenState
-        data class Success(val data: List<PopularFilmsVO>) : ScreenState
+    sealed class ScreenState {
+        data object Loading : ScreenState()
+        data object Error : ScreenState()
+        data class Success(val data: List<PopularFilmsVO>) : ScreenState()
     }
 }

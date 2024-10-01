@@ -1,21 +1,19 @@
 package com.dev.popular_films.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import com.airbnb.mvrx.MavericksViewModelFactory
+import com.airbnb.mvrx.ViewModelContext
+import com.dev.common.viewmodels.MviScreenVM
+import com.dev.popular_films.di.PopularFilmsComponentProvider
 import com.dev.popular_films_connector.PopularFilmsConnector
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PopularFilmsVM(
+    state: PopularFilmsContract.State,
     private val dataConnector: PopularFilmsConnector
-) : ViewModel() {
-
-    private val _uiState =
-        MutableStateFlow<PopularFilmsContract.ScreenState>(PopularFilmsContract.ScreenState.Loading)
-    val uiState
-        get() = _uiState
+) : MviScreenVM<PopularFilmsContract.Event, PopularFilmsContract.Effect, PopularFilmsContract.State>(
+    state
+) {
 
     init {
         loadData()
@@ -24,17 +22,37 @@ class PopularFilmsVM(
     private fun loadData() {
         viewModelScope.launch {
             dataConnector.getPopularFilms()?.let { data ->
-                _uiState.update { PopularFilmsContract.ScreenState.Success(data) }
-            } ?: _uiState.update { PopularFilmsContract.ScreenState.Error }
+                setState {
+                    copy(
+                        uiState = PopularFilmsContract.ScreenState.Success(data)
+                    )
+                }
+            } ?: setState {
+                copy(
+                    uiState = PopularFilmsContract.ScreenState.Error
+                )
+            }
         }
     }
 
-    class PopularFilmsVMFactory(
-        private val dataConnector: PopularFilmsConnector
-    ) : ViewModelProvider.Factory {
+    companion object : MavericksViewModelFactory<PopularFilmsVM, PopularFilmsContract.State> {
+        override fun create(
+            viewModelContext: ViewModelContext,
+            state: PopularFilmsContract.State
+        ): PopularFilmsVM {
+            val component =
+                (viewModelContext.app<Application>() as PopularFilmsComponentProvider).getPopularFilmsConnectorIml()
+            val dataConnector = component.getPopularFilmsDataConnectorImpl()
+            return PopularFilmsVM(
+                state = state,
+                dataConnector = dataConnector
+            )
+        }
 
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return PopularFilmsVM(dataConnector) as T
+        override fun initialState(viewModelContext: ViewModelContext): PopularFilmsContract.State {
+            return PopularFilmsContract.State(
+                uiState = PopularFilmsContract.ScreenState.Loading
+            )
         }
     }
 }

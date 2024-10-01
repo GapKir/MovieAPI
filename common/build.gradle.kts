@@ -17,4 +17,5 @@ android {
 
 dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.3")
+    implementation("com.airbnb.android:mavericks:3.0.3")
 }
