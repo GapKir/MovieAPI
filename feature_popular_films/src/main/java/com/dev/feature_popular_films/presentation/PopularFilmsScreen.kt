@@ -5,6 +5,7 @@ import com.airbnb.mvrx.withState
 import com.dev.common.fragments.Screen
 import com.dev.common.fragments.bindToViewLifecycle
 import com.dev.common.fragments.viewBinding
+import com.dev.common.fragments.withEffect
 import com.dev.popular_films.databinding.FragmentPopularFilmsBinding
 
 class PopularFilmsScreen : Screen() {
@@ -20,6 +21,11 @@ class PopularFilmsScreen : Screen() {
     private val viewModel by fragmentViewModel(
         viewModelClass = PopularFilmsVM::class
     )
+
+    override fun handleSideEffects() {
+        withEffect(viewModel, choreograph::handleEffect)
+    }
+
 
     override fun invalidate() = withState(viewModel, choreograph::invalidateState)
 }

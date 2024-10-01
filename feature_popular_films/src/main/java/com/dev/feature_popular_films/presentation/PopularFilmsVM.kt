@@ -6,6 +6,7 @@ import com.airbnb.mvrx.ViewModelContext
 import com.dev.common.viewmodels.MviScreenVM
 import com.dev.feature_popular_films.di.PopularFilmsComponentProvider
 import com.dev.feature_popular_films_connector.PopularFilmsConnector
+import com.dev.shared_models.popular_films.PopularFilmsVO
 import kotlinx.coroutines.launch
 
 class PopularFilmsVM(
@@ -22,16 +23,25 @@ class PopularFilmsVM(
     private fun loadData() {
         viewModelScope.launch {
             dataConnector.getPopularFilms()?.let { data ->
-                setState {
-                    copy(
-                        uiState = PopularFilmsContract.ScreenState.Success(data)
-                    )
-                }
-            } ?: setState {
-                copy(
-                    uiState = PopularFilmsContract.ScreenState.Error
-                )
-            }
+                handleSuccessResult(data)
+            } ?: run { handleErrorResult() }
+        }
+    }
+
+    private fun handleSuccessResult(data: List<PopularFilmsVO>){
+        setState {
+            copy(
+                uiState = PopularFilmsContract.ScreenState.Success(data)
+            )
+        }
+    }
+
+    private fun handleErrorResult(){
+        setEffect { PopularFilmsContract.Effect.Error }
+        setState {
+            copy(
+                uiState = PopularFilmsContract.ScreenState.Error
+            )
         }
     }
 

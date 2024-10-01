@@ -8,7 +8,9 @@ import com.dev.shared_models.popular_films.PopularFilmsVO
 object PopularFilmsContract {
 
     sealed interface Event: MviScreenEvent
-    sealed interface Effect: MviScreenEffect
+    sealed interface Effect: MviScreenEffect {
+        data object Error: Effect
+    }
 
     data class State(
         val uiState: ScreenState

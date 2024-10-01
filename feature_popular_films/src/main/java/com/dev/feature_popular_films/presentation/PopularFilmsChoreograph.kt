@@ -24,6 +24,13 @@ class PopularFilmsChoreograph(
         }
     }
 
+    fun handleEffect(effect: PopularFilmsContract.Effect){
+        val ctx = binding.root.context
+        when(effect){
+            PopularFilmsContract.Effect.Error -> Toast.makeText(ctx,ctx.getString(R.string.error), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun handleSuccessState(data: List<PopularFilmsVO>) {
         binding.progressBar.isVisible = false
         adapter.submitList(data)
@@ -31,8 +38,6 @@ class PopularFilmsChoreograph(
 
     private fun handleErrorState() {
         binding.progressBar.isVisible = false
-        val ctx = binding.root.context
-        Toast.makeText(ctx,ctx.getString(R.string.error), Toast.LENGTH_SHORT).show()
     }
 
     private fun handleLoadingState() {

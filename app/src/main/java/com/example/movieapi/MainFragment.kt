@@ -22,5 +22,7 @@ class MainFragment: Screen() {
         }
     }
 
+    override fun handleSideEffects() = Unit
+
     override fun invalidate() = Unit
 }
