@@ -22,13 +22,16 @@ class PopularFilmsVM(
 
     private fun loadData() {
         viewModelScope.launch {
-            dataConnector.getPopularFilms()?.let { data ->
-                handleSuccessResult(data)
-            } ?: run { handleErrorResult() }
+            val data = dataConnector.getPopularFilms()
+            if (data.isNotEmpty()) {
+                handleSuccessResult(data.requireNoNulls())
+            } else {
+                handleErrorResult()
+            }
         }
     }
 
-    private fun handleSuccessResult(data: List<PopularFilmsVO>){
+    private fun handleSuccessResult(data: List<PopularFilmsVO>) {
         setState {
             copy(
                 uiState = PopularFilmsContract.ScreenState.Success(data)
@@ -36,7 +39,7 @@ class PopularFilmsVM(
         }
     }
 
-    private fun handleErrorResult(){
+    private fun handleErrorResult() {
         setEffect { PopularFilmsContract.Effect.Error }
         setState {
             copy(

@@ -18,7 +18,7 @@ class PopularFilmsDataConnectorImpl(
     private val popularFilmsRepository: PopularFilmsRepository,
 ) : PopularFilmsConnector {
 
-    override suspend fun getPopularFilms(): List<PopularFilmsVO>? {
+    override suspend fun getPopularFilms(): List<PopularFilmsVO?> {
         return popularFilmsRepository.getPopularFilms()
     }
 }

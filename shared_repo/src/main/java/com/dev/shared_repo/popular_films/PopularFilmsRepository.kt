@@ -5,33 +5,31 @@ import com.dev.shared_api.popular_films.response.PopularFilmsResponse
 import com.dev.shared_models.popular_films.PopularFilmsVO
 
 interface PopularFilmsRepository {
-    suspend fun getPopularFilms(): List<PopularFilmsVO>?
+    suspend fun getPopularFilms(): List<PopularFilmsVO?>
 }
 
 class PopularFilmsRepositoryImpl(
     private val popularFilmsApi: PopularFilmsApi,
 ) : PopularFilmsRepository {
 
-    override suspend fun getPopularFilms(): List<PopularFilmsVO>? {
-        try {
-            val request = popularFilmsApi.getPopularFilms()
-            return if (request.isSuccessful) {
-                request.body()?.toVo()
+    override suspend fun getPopularFilms(): List<PopularFilmsVO?> {
+        return runCatching {
+            val response = popularFilmsApi.getPopularFilms()
+            if (response.isSuccessful) {
+                response.body()?.toVo().orEmpty()
             } else {
-                return null
+                emptyList()
             }
-        } catch (e: Exception) {
-            return null
-        }
+        }.getOrDefault(emptyList())
     }
 }
 
-private fun PopularFilmsResponse.toVo(): List<PopularFilmsVO>? {
+private fun PopularFilmsResponse.toVo(): List<PopularFilmsVO?> {
     return results?.map {
         PopularFilmsVO(
             overview = it.overview.orEmpty(),
             title = it.title.orEmpty(),
             poster = "https://image.tmdb.org/t/p/original${it.poster}"
         )
-    }
+    }.orEmpty()
 }
