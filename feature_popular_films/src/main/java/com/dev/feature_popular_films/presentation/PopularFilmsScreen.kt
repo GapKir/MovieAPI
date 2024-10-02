@@ -14,7 +14,8 @@ class PopularFilmsScreen : Screen() {
 
     private val choreograph by bindToViewLifecycle {
         PopularFilmsChoreograph(
-            binding = binding
+            binding = binding,
+            setEvent = viewModel::handleEvent
         )
     }
 
@@ -25,7 +26,6 @@ class PopularFilmsScreen : Screen() {
     override fun handleSideEffects() {
         withEffect(viewModel, choreograph::handleEffect)
     }
-
 
     override fun invalidate() = withState(viewModel, choreograph::invalidateState)
 }

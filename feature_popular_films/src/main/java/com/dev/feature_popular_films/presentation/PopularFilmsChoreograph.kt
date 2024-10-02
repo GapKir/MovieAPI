@@ -8,6 +8,7 @@ import com.dev.shared_models.popular_films.PopularFilmsVO
 
 class PopularFilmsChoreograph(
     private val binding: FragmentPopularFilmsBinding,
+    private val setEvent: (PopularFilmsContract.Event) -> Unit
 ) {
 
     private val adapter = MovieAdapter()
@@ -24,24 +25,37 @@ class PopularFilmsChoreograph(
         }
     }
 
-    fun handleEffect(effect: PopularFilmsContract.Effect){
+    fun handleEffect(effect: PopularFilmsContract.Effect) {
         val ctx = binding.root.context
-        when(effect){
-            PopularFilmsContract.Effect.Error -> Toast.makeText(ctx,ctx.getString(R.string.error), Toast.LENGTH_SHORT).show()
+        when (effect) {
+            PopularFilmsContract.Effect.Error -> Toast.makeText(
+                ctx,
+                ctx.getString(R.string.error),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun handleSuccessState(data: List<PopularFilmsVO>) {
-        binding.progressBar.isVisible = false
+        with(binding) {
+            progressBar.isVisible = false
+            errorState.root.isVisible = false
+        }
         adapter.submitList(data)
     }
 
     private fun handleErrorState() {
-        binding.progressBar.isVisible = false
+        with(binding) {
+            progressBar.isVisible = false
+            errorState.root.isVisible = true
+        }
     }
 
     private fun handleLoadingState() {
-        binding.progressBar.isVisible = true
+        with(binding) {
+            progressBar.isVisible = true
+            errorState.root.isVisible = false
+        }
     }
 
     private fun initView() {
@@ -50,6 +64,8 @@ class PopularFilmsChoreograph(
                 adapter = this@PopularFilmsChoreograph.adapter
                 itemAnimator = null
             }
+            errorState.root.isVisible = false
+            errorState.btnRetry.setOnClickListener { setEvent.invoke(PopularFilmsContract.Event.Retry) }
         }
     }
 }

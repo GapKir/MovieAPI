@@ -24,4 +24,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/error_state"
+        layout="@layout/error_state" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

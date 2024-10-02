@@ -21,6 +21,7 @@ class PopularFilmsVM(
     }
 
     private fun loadData() {
+        handleLoadingResult()
         viewModelScope.launch {
             val data = dataConnector.getPopularFilms()
             if (data.isNotEmpty()) {
@@ -28,6 +29,20 @@ class PopularFilmsVM(
             } else {
                 handleErrorResult()
             }
+        }
+    }
+
+    override fun handleEvent(event: PopularFilmsContract.Event) {
+        when (event) {
+            PopularFilmsContract.Event.Retry -> loadData()
+        }
+    }
+
+    private fun handleLoadingResult() {
+        setState {
+            copy(
+                uiState = PopularFilmsContract.ScreenState.Loading
+            )
         }
     }
 

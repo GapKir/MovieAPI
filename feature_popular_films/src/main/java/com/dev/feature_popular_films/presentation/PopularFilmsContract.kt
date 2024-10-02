@@ -7,7 +7,9 @@ import com.dev.shared_models.popular_films.PopularFilmsVO
 
 object PopularFilmsContract {
 
-    sealed interface Event: MviScreenEvent
+    sealed interface Event: MviScreenEvent {
+        data object Retry: Event
+    }
     sealed interface Effect: MviScreenEffect {
         data object Error: Effect
     }
