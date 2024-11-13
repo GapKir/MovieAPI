@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -51,6 +52,10 @@ dependencies {
 
     //mvi
     implementation("com.airbnb.android:mavericks:3.0.3")
+
+    //dagger2
+    implementation("com.google.dagger:dagger:2.48.1")
+    ksp("com.google.dagger:dagger-compiler:2.48.1")
 
     //modules
     implementation(project(":shared_api"))
