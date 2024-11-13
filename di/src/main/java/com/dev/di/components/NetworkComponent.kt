@@ -1,5 +1,7 @@
-package com.example.movieapi.di
+package com.dev.di.components
 
+import com.dev.di.modules.ApiModule
+import com.dev.shared_api.popular_films.PopularFilmsApi
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -21,14 +23,18 @@ annotation class NetworkScope
     modules = [NetworkApiModule::class, ApiModule::class]
 )
 interface NetworkComponent {
+
     @Component.Builder
     interface Builder {
         fun build(): NetworkComponent
     }
+
+    fun retrofit(): Retrofit
+    fun popularFilmsApi(): PopularFilmsApi
 }
 
 @Module
-interface NetworkApiModule {
+class NetworkApiModule {
 
     @Named("header")
     @Provides

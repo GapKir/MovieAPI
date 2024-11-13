@@ -1,16 +1,19 @@
 package com.dev.feature_popular_films.presentation
 
-import android.app.Application
 import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
+import com.dev.common.AssistedViewModelFactory
+import com.dev.common.daggerMavericksFeatureViewModelFactory
 import com.dev.common.viewmodels.MviScreenVM
-import com.dev.feature_popular_films.di.PopularFilmsComponentProvider
 import com.dev.feature_popular_films_connector.PopularFilmsConnector
 import com.dev.shared_models.popular_films.PopularFilmsVO
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
-class PopularFilmsVM(
-    state: PopularFilmsContract.State,
+class PopularFilmsVM @AssistedInject constructor(
+    @Assisted state: PopularFilmsContract.State,
     private val dataConnector: PopularFilmsConnector
 ) : MviScreenVM<PopularFilmsContract.Event, PopularFilmsContract.Effect, PopularFilmsContract.State>(
     state
@@ -63,19 +66,12 @@ class PopularFilmsVM(
         }
     }
 
-    companion object : MavericksViewModelFactory<PopularFilmsVM, PopularFilmsContract.State> {
-        override fun create(
-            viewModelContext: ViewModelContext,
-            state: PopularFilmsContract.State
-        ): PopularFilmsVM {
-            val component =
-                (viewModelContext.app<Application>() as PopularFilmsComponentProvider).getPopularFilmsConnectorIml()
-            val dataConnector = component.getPopularFilmsDataConnectorImpl()
-            return PopularFilmsVM(
-                state = state,
-                dataConnector = dataConnector
-            )
-        }
+    @AssistedFactory
+    interface Factory : AssistedViewModelFactory<PopularFilmsVM, PopularFilmsContract.State> {
+        override fun create(state: PopularFilmsContract.State): PopularFilmsVM
+    }
+
+    companion object : MavericksViewModelFactory<PopularFilmsVM, PopularFilmsContract.State> by daggerMavericksFeatureViewModelFactory() {
 
         override fun initialState(viewModelContext: ViewModelContext): PopularFilmsContract.State {
             return PopularFilmsContract.State(

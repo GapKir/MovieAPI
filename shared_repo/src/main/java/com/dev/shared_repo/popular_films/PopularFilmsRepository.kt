@@ -3,12 +3,13 @@ package com.dev.shared_repo.popular_films
 import com.dev.shared_api.popular_films.PopularFilmsApi
 import com.dev.shared_api.popular_films.response.PopularFilmsResponse
 import com.dev.shared_models.popular_films.PopularFilmsVO
+import javax.inject.Inject
 
 interface PopularFilmsRepository {
     suspend fun getPopularFilms(): List<PopularFilmsVO?>
 }
 
-class PopularFilmsRepositoryImpl(
+class PopularFilmsRepositoryImpl @Inject constructor(
     private val popularFilmsApi: PopularFilmsApi,
 ) : PopularFilmsRepository {
 

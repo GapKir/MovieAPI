@@ -1,4 +1,4 @@
-package com.example.movieapi.di
+package com.dev.di.modules
 
 import com.dev.shared_api.popular_films.PopularFilmsApi
 import dagger.Module
@@ -6,7 +6,7 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-interface ApiModule {
+class ApiModule {
 
     @Provides
     fun providePopularFilmsApi(

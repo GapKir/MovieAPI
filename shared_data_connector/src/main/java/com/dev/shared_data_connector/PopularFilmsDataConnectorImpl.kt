@@ -1,20 +1,11 @@
-package com.example.movieapi.di
+package com.dev.shared_data_connector
 
 import com.dev.feature_popular_films_connector.PopularFilmsConnector
 import com.dev.shared_models.popular_films.PopularFilmsVO
 import com.dev.shared_repo.popular_films.PopularFilmsRepository
+import javax.inject.Inject
 
-class ConnectorsImplModule(
-    private val repositoriesModule: RepositoriesModule
-) {
-
-    fun getPopularFilmsDataConnectorImpl(): PopularFilmsConnector {
-        return PopularFilmsDataConnectorImpl(repositoriesModule.getPopularFilmsRepository())
-    }
-
-}
-
-class PopularFilmsDataConnectorImpl(
+class PopularFilmsDataConnectorImpl @Inject constructor(
     private val popularFilmsRepository: PopularFilmsRepository,
 ) : PopularFilmsConnector {
 

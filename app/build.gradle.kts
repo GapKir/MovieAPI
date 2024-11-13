@@ -63,5 +63,7 @@ dependencies {
     implementation(project(":feature_popular_films_connector"))
     implementation(project(":feature_popular_films"))
     implementation(project(":shared_models"))
+    implementation(project(":shared_data_connector"))
     implementation(project(":common"))
+    implementation(project(":di"))
 }

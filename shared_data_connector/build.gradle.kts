@@ -5,22 +5,18 @@ plugins {
 }
 
 android {
-    namespace = "com.dev.common"
+    namespace = "com.dev.shared_data_connector"
     compileSdk = 34
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
-
 dependencies {
-    implementation("androidx.fragment:fragment-ktx:1.8.3")
-    implementation("com.airbnb.android:mavericks:3.0.3")
-
-    //dagger2
     implementation("com.google.dagger:dagger:2.48.1")
     ksp("com.google.dagger:dagger-compiler:2.48.1")
+
+    implementation(project(":shared_repo"))
+    implementation(project(":feature_popular_films_connector"))
+    implementation(project(":shared_models"))
 }

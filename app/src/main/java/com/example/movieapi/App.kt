@@ -2,22 +2,16 @@ package com.example.movieapi
 
 import android.app.Application
 import com.airbnb.mvrx.Mavericks
-import com.dev.feature_popular_films.di.PopularFilmsComponentProvider
-import com.dev.feature_popular_films.di.PopularFilmsDependencies
-import com.example.movieapi.di.FeatureComponent
+import com.dev.common.HasComponents
+import com.dev.di.AppInjector
+import com.dev.di.ComponentHolder
 
-class App: Application(), PopularFilmsComponentProvider {
-
-    private lateinit var featureComponent: FeatureComponent
+class App: Application(), HasComponents by ComponentHolder() {
 
     override fun onCreate() {
         super.onCreate()
-        featureComponent = FeatureComponent()
+        AppInjector().initDi(this)
         Mavericks.initialize(this)
-    }
-
-    override fun getPopularFilmsConnectorIml(): PopularFilmsDependencies {
-        return featureComponent
     }
 
 }
